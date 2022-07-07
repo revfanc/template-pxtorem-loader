@@ -10,5 +10,6 @@
     "pxtorem"
   ],
   "author": "revfanc",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
