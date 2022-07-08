@@ -1,4 +1,3 @@
-var loaderUtils = require("loader-utils");
 // 默认参数
 var defaultConfig = {
   unitToConvert: "px",
@@ -12,9 +11,7 @@ var templateRegExp = /<template>([\s\S]+)<\/template>/gi;
 var pxRegExp = /(\d+)(\.\d+)?px/;
 
 module.exports = function (source) {
-  var opts = loaderUtils.getOptions(this);
-  console.log(opts);
-  var defaults = Object.assign({}, defaultConfig, opts);
+  var config = Object.assign({}, defaultConfig, this.query);
   var _source = "";
   if (templateRegExp.test(source)) {
     _source = source.match(templateRegExp)[0];
@@ -24,10 +21,10 @@ module.exports = function (source) {
     var _a = _source.replace(
       pxGlobalRegExp,
       createPxReplace(
-        defaults.viewportWidth,
-        defaults.minPixelValue,
-        defaults.unitPrecision,
-        defaults.viewportUnit
+        config.viewportWidth,
+        config.minPixelValue,
+        config.unitPrecision,
+        config.viewportUnit
       )
     );
     return source.replace(templateRegExp, _a);

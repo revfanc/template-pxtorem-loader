@@ -1,6 +1,6 @@
 {
   "name": "template-pxtorem-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vue template 行内px转rem",
   "main": "index.js",
   "scripts": {

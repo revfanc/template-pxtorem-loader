@@ -10,7 +10,7 @@ npm install template-pxtorem-loader --save-dev
 
 ### Use
 
-vue-cli3
+vue-cli4
 
 ```javascript
 {
@@ -19,7 +19,14 @@ vue-cli3
       .rule("vue")
       .test(/\.vue$/)
       .use("template-pxtorem-loader")
-      .loader("template-pxtorem-loader");
+      .loader("template-pxtorem-loader")
+      .tap((options) => {
+        options = {
+          viewportWidth: 375,
+        };
+        return options;
+      })
+      .end();
   };
 }
 ```
@@ -41,14 +48,12 @@ vue-cli2
 ```html
 from
 
-<h3 style="font-size: 28px;margin-top: 10px" width="500px">Test</h3>
+<h3 style="width: 375px; height: 50px; font-size: 14px">Test</h3>
 ```
 
 ```html
 To
-<h3 width="66.66667vw" style="font-size: 3.73333rem; margin-top: 1.33333rem;">
-  Test
-</h3>
+<h3 style="width: 10rem; height: 1.33333rem; font-size: 0.37333rem;">Test</h3>
 ```
 
 ### option
@@ -56,18 +61,18 @@ To
 默认配置
 
 ```javascript
-defaultsProp = {
+defaultConfig = {
   unitToConvert: "px",
-  viewportWidth: 750,
+  viewportWidth: 375,
   unitPrecision: 5,
-  viewportUnit: "px",
-  fontViewportUnit: "px",
+  viewportUnit: "rem",
+  fontViewportUnit: "rem",
   minPixelValue: 1,
 };
 ```
 
 ### 参考
 
-该项目来源于style-vw-loader
+该项目来源于 style-vw-loader
 
 https://github.com/hyy1115/style-vw-loader
